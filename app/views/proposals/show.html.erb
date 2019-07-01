@@ -1,0 +1,58 @@
+<% if logged? %>
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="jumbotron" style="margin-top: 2%; height: 10%;">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+        
+
+
+<h3>Proposal</h3>
+
+<table id="cart" class="table table-responsive">
+<thead>
+<div class="col-sm-9">
+<tr class="names">
+  
+  <th style="width:30%" >Title</th>
+  <th style="width:30%" >Description</th>
+
+</tr>
+</thead>
+</div>
+</div>
+</div>
+</div>
+<tbody>
+
+<tr class="item">
+<td style="width:30%"><%= @proposal.title%></td>
+<td style="width:30%"><%= @proposal.description%></td>
+
+<td class="btn btn-default btn-sm" >
+<%= link_to like_proposal_path(@proposal), method: :put do %> 
+<span class="glyphicon glyphicon-thumbs-up">Like (<%= @proposal.get_upvotes.size %>)</span> 
+ 
+<% end %>
+</td>
+
+<td  class="btn btn-default btn-sm">
+
+<%= link_to dislike_proposal_path(@proposal), method: :put do %>
+<span class="glyphicon glyphicon-thumbs-down">Dislike (<%= @proposal.get_downvotes.size %>)</span> 
+<!-- Votes for the Proposal -->
+<!-- created by sajib -->
+<% end %>
+</td>
+
+</tr>
+</tbody>
+</table>
+
+
+<%= link_to 'New Proposal', new_proposal_path(@proposal.hackathon_id), class: "btn-sm btn-success pull-left" %></td>
+<%= link_to 'Back', proposals_path(@proposal.hackathon_id), class: "btn-sm btn-success pull-right"%></td>
+
+
+<% end %>

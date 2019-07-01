@@ -1,0 +1,188 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>   
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
+
+
+<style type="text/css">
+    
+.abc{
+    width: 20%;
+    margin-right: 17%;
+}
+
+</style>
+<% if logged? %>
+<div class="container center">
+<div class="jumbotron center" style="margin-top: 1%; margin-left: 20%; margin-right: 20%;">
+<h3>Create New Hackathon</h3>
+<hr >
+<%= form_for (@hackathon), :html => {:class => "form-horizontal center"} do |f| %>
+      <div class="form-group">
+        <%= f.label :title, "Title:", class: "col-md-3 control-label" %>
+        <div class="col-md-7">
+          <%= f.text_field :title, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :topic, "Topic:", class: "col-md-3 control-label" %>
+        <div class="col-md-7">
+          <%= f.text_field :topic, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+      <%= f.label :avatar, "Profile Image:", class: "col-md-3 control-label" %>  
+      <div class="fileinput fileinput-new col-md-7" data-provides="fileinput">
+          <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 317px; height: 150px;"></div>
+              <div>
+                <span class="btn btn-default btn-file">
+                  <span class="fileinput-new">Select image</span>
+                  <%= f.file_field :avatar %>
+                </span>
+              </div>
+      </div>
+    </div>
+    
+      <div class="form-group">
+        <%= f.label :description, "Description:", class: "col-md-3 control-label" %>
+        <div class="col-md-7">
+          <%= f.text_area :description, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :number_of_participants, "No of Participants:", class: "col-md-3 control-label" %>
+        <div class="col-md-7">
+          <%= f.number_field :number_of_participants, class: "form-control" %>
+        </div>
+      </div>
+     <div class="form-group">   
+        <%= f.label :is_private, "Private:", class: "col-md-3 control-label" %>
+        <div class="col-md-3">     
+        <%= f.select :is_private, ['Yes', 'No']%>
+        </div>
+      </div> 
+    <hr style="border-color: #d5d5d5;">
+     <div class="form-group">
+        <%= f.label :start_date, "Start Date:", class: "col-md-3 control-label" %>
+        <div class="col-md-7">
+        <div class='input-group date' id='datetimepicker3'>
+            <%= f.text_field :start_date, class: "form-control" %>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+    </div>
+    </div>
+      <div class="form-group">
+            <%= f.label :end_date, "End Date:", class: "col-md-3 control-label" %>
+            <div class="col-md-7">
+            <div class='input-group date' id='datetimepicker1'>
+                <%= f.text_field :end_date, class: "form-control" %>
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar"></span>
+                </span>
+            </div>
+        </div>
+        </div>
+      <div class="form-group">
+        <%= f.label :hackathon_venue, "Venue:", class: "col-md-3 control-label" %>
+        <div class="col-md-7">
+          <%= f.text_field :hackathon_venue, class: "form-control" %>
+        </div>
+      </div>
+      <div class="form-group">
+        <%= f.label :twitter_link, "Twitter Link:", class: "col-md-3 control-label" %>
+        <div class="col-md-7">
+          <%= f.text_field :twitter_link, class: "form-control" %>
+        </div>
+      </div>
+      <hr style="border-color: #d5d5d5;">
+        <%= f.hidden_field :user_id, :value => current_user.id %>
+        
+      <%= f.submit "Submit", class: "btn-sm btn-default btn-primary pull-right abc" %>  
+      <%= link_to 'Go Back', hackathons_path, class: "btn-sm btn-success pull-right abc" %>
+      
+
+      
+</div>
+ <% end %>
+ 
+
+ <script type="text/javascript">
+    
+    function remove_ele(array, element) {
+        const index = array.indexOf(element);
+        array.splice(index, 1);
+        count = count-1 
+    }
+
+    function add_element(){
+        if (count > 10){
+          alert("You can add more than 6 question");
+          return;
+        }
+        var placeholder = ['Question', 'Answer'];
+        temp = ++count;
+        list.push(temp);
+        $("<div id="+(temp)+" class='row'><div class='col-md-7 col-md-offset-3'> \
+          <input name=cus_field"+(temp)+" type='text' class='form-control' placeholder="+(placeholder[0])+" ></div> \
+                <div class='col-md-1'><i class='fa fa-minus-circle' onclick='delete_element("+(temp)+");'></i></div><br /> \
+          </div></div>").appendTo('#cusfield');
+        temp = ++count;
+        list.push(temp);
+        $("<div id="+(temp)+" class='row'><div class='col-md-7 col-md-offset-3'> \
+          <textarea name=cus_field"+(temp)+" class='form-control' placeholder="+(placeholder[1])+" ></textarea></div> \
+                <div class='col-md-1'></div> \
+        </div>").appendTo('#cusfield');
+        $('.t_count').val(list);
+    }
+
+    function delete_element(index){
+        remove_ele(list, index)
+        remove_ele(list, index+1)
+        $("#"+(index)).remove();
+        $("#"+(index+1)).remove();
+        $('.t_count').val(list); 
+    }
+</script>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#datetimepicker3').datetimepicker({
+            format: "YYYY-MM-DD hh:mm a Z"
+        });
+        $('#datetimepicker1').datetimepicker({
+            format: "YYYY-MM-DD hh:mm a Z"
+        });
+    });
+</script>
+
+</div>
+<% else %>
+<script type="text/javascript">
+    alert("You must be logged in to create Hackathon")
+    window.location.href="/login" 
+</script>
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,60 @@
+
+<% if logged? %>
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <table id="cart" class="table table-responsive">
+            <thead>
+            <tr class="names">
+              <th style="width:50%">Your Hackathon</th>
+              <th style="width:10%" class="text-right hidden-xs">Show</th>
+              <th style="width:10%" class="text-right hidden-xs">Edit</th>
+              <th style="width:15%" class="text-right">Delete</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @hackathons.each do |hackathon| %>
+            <tr class="item">
+              <td data-th="Product">
+                <div class="row">
+                  <!-- <div class="col-sm-3 hidden-xs"><img src="https://kickz.akamaized.net/en/media/images/p/600/converse-all_star_ox_canvas-bordeaux-3.jpg" alt="Converse" class="img-product img-responsive img-rounded"/></div> -->
+                  <div class="col-sm-9">
+                    <h4 class="nomargin"><%= hackathon.title %></h4>
+                    <p class="hidden-xs"><%= hackathon.topic %></p>
+                  </div>
+                </div>
+              </td>
+              <td data-th="Size" class="text-right hidden-xs"><%= link_to 'Show Hackathon', hackathon %></td>
+              <td data-th="Price" class="text-right hidden-xs"><%= link_to 'Edit Hackathon', edit_hackathon_path(hackathon) %></td>
+            
+              <td data-th="Subtotal" class="text-right"><%= link_to 'Destroy Hackathon', hackathon, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td data-th="Price" class="text-right hidden-xs"><%= link_to 'All Posted Proposals', proposals_path(hackathon.id) %></td>
+            </tr>
+          </tbody>
+          <% end %>
+          <tfoot>
+            <tr class="no-border">
+              <td>
+                <%= link_to 'Create New Hackathon', new_hackathon_path, class:"btn btn-default"%>
+                <!-- created by sajib -->
+
+                <%= link_to "Advanced Search", new_search_path, class: "btn btn-primary" %>
+                
+                <!-- 
+                created by sajib 
+                -->
+          
+              </td>
+              <td colspan="2" class="hidden-xs"></td>
+              <td></td>
+              </tr>
+          </tfoot>
+        </table>
+</div>
+<br>
+
+<% else %>
+<script type="text/javascript">
+    alert("You must be logged in to view this page")
+    window.location.href="/login" 
+</script>
+<% end %>

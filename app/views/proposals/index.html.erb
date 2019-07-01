@@ -1,0 +1,73 @@
+<% if logged? %>
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <div class="jumbotron" style="margin-top: 2%; height: 10%;">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
+        
+
+<table id="cart" class="table table-responsive">
+<thead>
+<div class="col-sm-9">
+<p class="text-center"> Proposals of the Hackathon</p>
+<tr class="item">
+
+  <th style="width:30%" class="text-center">Title</th>
+  <th style="width:20%" class="text-center" >Description</th>
+  
+  <th style="width:20%" class="text-center" class="text-right hidden-xs">Show</th>
+
+
+</tr>
+</thead>
+</div>
+</div>
+</div>
+</div>
+<tbody>
+<% @hackathons= Hackathon.all %>
+<% @hackathons.each do |hackathon| %>
+  
+<br>
+<% @id=hackathon.id %>
+<%end %>
+<% @proposals= Proposal.all %>
+
+<% @proposals.each do |proposal| %>
+<% if @id==proposal.hackathon_id  then %>
+<tr class="item">
+<td data-th="Product" style="width:30%" class="text-left hidden-xs"><%= proposal.title%></td>
+<td data-th="Product" style="width:20%" class="text-center hidden-xs"><%= proposal.description%></td>
+
+<td data-th="Product" style="width:20%" class="text-center hidden-xs"><%= link_to 'Show', proposal_path(proposal) %></td>
+
+<td  class="btn btn-default btn-sm">
+<%= link_to like_proposal_path(proposal), method: :put do %> 
+<span class="glyphicon glyphicon-thumbs-up">Like (<%= proposal.get_upvotes.size %>)</span> 
+ 
+<% end %>
+</td>
+
+<td  class="btn btn-default btn-sm">
+
+<%= link_to dislike_proposal_path(proposal), method: :put do %>
+<span class="glyphicon glyphicon-thumbs-down">Dislike (<%= proposal.get_downvotes.size %>)</span> 
+<!-- Votes for the Proposal -->
+<!-- created by sajib -->
+<% end %>
+</td>
+<%end %>
+
+<%end%>
+</tr>
+</tbody>
+</table>
+
+
+<%= link_to 'New Proposal', new_proposal_path(@id), class: "btn-sm btn-success pull-left"%>
+
+
+<% end %>
+</div>
+</div>
