@@ -1,5 +1,10 @@
 # README
 
+
+To see the project full version deployed in local server check out the link below:
+
+https://www.youtube.com/watch?v=crksUhuRnA0&t=598s
+
 This README would normally document whatever steps are necessary to get the
 application up and running.
 
@@ -22,6 +27,3 @@ Things you may want to cover:
 * Deployment instructions
 
 
-To see the project full version deployed in local server check out the link below:
-
-https://www.youtube.com/watch?v=crksUhuRnA0&t=598s
