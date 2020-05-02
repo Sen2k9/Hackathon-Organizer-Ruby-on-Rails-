@@ -1,11 +1,11 @@
 # README
 
-A prototype of Event Management System (EMS) to host, organize, participate and vote a Hackathon. 
+### A prototype of Event Management System (EMS) to host, organize, participate and vote a Hackathon. 
 
 ![](hackathon_organizer.jpg)
 
 
-To see the complete Project version deployed in local server check out the link below:
+### To see the complete Project version deployed in local server check out the link below:
 
 https://www.youtube.com/watch?v=crksUhuRnA0&t=598s
 
